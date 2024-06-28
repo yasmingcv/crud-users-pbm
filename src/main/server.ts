@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { AppDataSource } from './config/db-connection';
-import * as express from 'express';
-import * as cors from 'cors';
+import express from 'express';
+import cors from 'cors'
 
 const app = express();
 app.use(cors());
@@ -13,4 +13,6 @@ AppDataSource.initialize().then(async () => {
         console.log('Servidor aguardando requisições na porta 8080.');
         
     })
+}).catch((error) => {
+    console.log(error)
 })
