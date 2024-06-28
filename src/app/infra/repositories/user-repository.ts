@@ -1,3 +1,7 @@
-import { User } from "../../domain/entities/user";
-import { UserModel } from "../../domain/model/user.model";
-import { AppDataSource } from "../../../main/config/db-connection";
+import { BaseRepository } from "./base-repository";
+
+export default class UsersRepository extends BaseRepository{
+    constructor () {
+        super('user') // model
+    }
+}

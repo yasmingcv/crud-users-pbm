@@ -16,6 +16,9 @@ export const adaptRoute = (controller: Controller) => {
 
         const httpResponse: HttpResponse = await controller.handle(httpRequest)
 
+        console.log('adaptRoute',httpResponse);
+        
+
         httpResponse.headers !== undefined ? response.set(httpResponse.headers) : null
 
         if (httpResponse.path !== undefined) {
