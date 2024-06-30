@@ -5,7 +5,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config()
 
-
 const connect = async (): Promise<DataSource> => {
     return new DataSource({
         type: "mysql",

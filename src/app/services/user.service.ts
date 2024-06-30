@@ -17,4 +17,15 @@ export class UsersService {
         const usersData = await this.find({relations: []})
         return usersData
     }
+
+    async create (content: addUser): Promise<void>{
+        const result = await this.UsersRepository.add(content)
+        return result
+    }
+}
+
+interface addUser{
+    firstName: string,
+    lastName: string,
+    age: number
 }
