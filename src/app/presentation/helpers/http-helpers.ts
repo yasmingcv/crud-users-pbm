@@ -6,5 +6,3 @@ export const created = (data: any): HttpResponse => {
     body: data
   }
 }
-
-module.exports = created

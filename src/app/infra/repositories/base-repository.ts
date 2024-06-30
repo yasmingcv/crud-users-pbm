@@ -35,5 +35,9 @@ export class BaseRepository {
         return await repository.find(props)
     }
 
+    async findOne(props: FindProps): Promise<any>{
+        const repository = await this.instanceRepository()
+        return await repository.findOne(props)
+    }
 
 }

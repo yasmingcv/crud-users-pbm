@@ -1,4 +1,4 @@
-import { UsersService } from "../../../../services/user.service";
+import { UsersService, addUser } from "../../../../services/user.service";
 import { Controller } from "../../../protocolos/controller";
 import { HttpRequest, HttpResponse } from "../../../protocolos/http";
 import { created } from "src/app/presentation/helpers/http-helpers";
@@ -23,12 +23,26 @@ export class AddUsersController implements Controller {
 
         try {
             const data = httpRequest.body
-            
-            const result = this.usersService.create(data)
-            return {
-                "statusCode": 201,
-                "body": result
+
+            if (data.firstName && data.lastName && !isNaN(data.age)) {
+                await this.usersService.create(data)
+                const userInserted = await this.usersService.selectLastUser()
+                return {
+                    "statusCode": 201,
+                    "body": {
+                        "message": "Usuário criado com sucesso!",
+                        "user": userInserted
+                    }
+                }
+            } else {
+                return {
+                    "statusCode": 400,
+                    "body": {
+                        "message": "Todos os campos devem ser preenchidos corretamente."
+                    }
+                }
             }
+
         } catch (error) {
             return {
                 "statusCode": 500,

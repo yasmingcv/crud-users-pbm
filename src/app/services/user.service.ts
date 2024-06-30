@@ -14,17 +14,25 @@ export class UsersService {
 
 
     async findAll(): Promise<UserModel[]> {
-        const usersData = await this.find({relations: []})
+        const usersData = await this.find({ relations: [] })
         return usersData
     }
 
-    async create (content: addUser): Promise<void>{
+    async create(content: addUser): Promise<void> {
         const result = await this.UsersRepository.add(content)
         return result
     }
+
+    async selectLastUser(): Promise<UserModel[]> {
+        const user = await this.find({ 
+            order: { id: "DESC" }, 
+            take: 1 })
+        return user
+
+    }
 }
 
-interface addUser{
+export interface addUser {
     firstName: string,
     lastName: string,
     age: number
