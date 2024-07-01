@@ -8,7 +8,7 @@ dotenv.config()
 const connect = async (): Promise<DataSource> => {
     return new DataSource({
         type: "mysql",
-        host: process.env.HOSTNAME,
+        host: process.env.HOST,
         port: 3306,
         username: process.env.USER,
         password: process.env.PASSWORD,
@@ -20,6 +20,7 @@ const connect = async (): Promise<DataSource> => {
         subscribers: [],
     })
 }
+
 
 export const TypeOrmHelpers = {
     client: null as unknown as DataSource,

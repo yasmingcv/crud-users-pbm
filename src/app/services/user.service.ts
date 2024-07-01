@@ -23,11 +23,20 @@ export class UsersService {
         return result
     }
 
+    async update(id: number, content: addUser): Promise<void> {
+        const result = await this.UsersRepository.update(id, content)
+        return result
+    }
+
     async selectLastUser(): Promise<UserModel[]> {
         const user = await this.find({ 
             order: { id: "DESC" }, 
             take: 1 })
         return user
+    }
+
+    async delete(id: number): Promise<void> {
+        await this.UsersRepository.delete(id)
 
     }
 }

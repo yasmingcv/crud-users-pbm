@@ -1,3 +1,4 @@
+import { errorInternalServer, successRequest } from "../../../helpers/http-helpers";
 import { UsersService } from "../../../../services/user.service";
 import { Controller } from "../../../protocolos/controller";
 import { HttpRequest, HttpResponse } from "../../../protocolos/http";
@@ -18,20 +19,15 @@ export class GetAllUsersController implements Controller{
     }
 
     async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-        
         try{
             const result = await this.usersService.findAll()
             console.log(result);
             
-            return {
-                "statusCode": 200,
-                "body": result
-            }
+            return successRequest(result)
+
         } catch (error) {
-            return{
-                "statusCode": 500,
-                "body": error
-            }
+            return errorInternalServer(error)
+
         }
         
     }

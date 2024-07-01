@@ -30,6 +30,12 @@ export class BaseRepository {
         await repository.delete(content)
     }
 
+    async update(params: any, content: any): Promise<void> {
+        const repository = await this.instanceRepository()
+        await repository.update(params, content)
+    }
+
+
     async find(props: FindProps): Promise<any[]> {
         const repository = await this.instanceRepository()
         return await repository.find(props)
