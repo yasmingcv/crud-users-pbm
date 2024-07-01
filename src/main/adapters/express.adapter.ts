@@ -14,10 +14,7 @@ export const adaptRoute = (controller: Controller) => {
             nextFunction: next
         }
 
-        const httpResponse: HttpResponse = await controller.handle(httpRequest)
-
-        console.log('adaptRoute',httpResponse);
-        
+        const httpResponse: HttpResponse = await controller.handle(httpRequest)        
 
         httpResponse.headers !== undefined ? response.set(httpResponse.headers) : null
 

@@ -21,7 +21,6 @@ export class GetAllUsersController implements Controller{
     async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
         try{
             const result = await this.usersService.findAll()
-            console.log(result);
             
             return successRequest(result)
 
