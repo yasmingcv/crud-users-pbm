@@ -10,7 +10,9 @@ export const created = (data: any): HttpResponse => {
   }
 }
 
-export const successRequest = (data: any): HttpResponse => {
+export const successRequest = (dataParam?: any): HttpResponse => {
+  const data = dataParam ? dataParam : null
+  
   return {
     statusCode: 200,
     body: {
