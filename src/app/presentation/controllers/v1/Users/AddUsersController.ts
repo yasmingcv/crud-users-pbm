@@ -2,6 +2,7 @@ import { UsersService, addUser } from "../../../../services/user.service";
 import { Controller } from "../../../protocolos/controller";
 import { HttpRequest, HttpResponse } from "../../../protocolos/http";
 import { created, errorMissingParams } from "../../../helpers/http-helpers";
+import { logger } from "../../../../../main/server";
 
 export const routeInfo = {
     path: '/users/',
@@ -28,7 +29,10 @@ export class AddUsersController implements Controller {
                 await this.usersService.create(data)
                 const userInserted = await this.usersService.selectLastUser()
 
+                logger.emit('juro nao sei', data)
                 return created(userInserted[0])
+
+
             } else {
                 return errorMissingParams()
             }
